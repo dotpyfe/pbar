@@ -5,10 +5,12 @@ import (
     "fmt"
     "os"
     "io"
+    "strings"
 )
 
 const listenPort = ":8181"
 const ok = "OK"
+const valcmd = "npsq"
 
 func main() {
     // connect to the listening port
@@ -46,6 +48,12 @@ func main() {
             //}
 
             fmt.Printf("i was sent %v\n", req)
+
+            cmd := req[0]
+
+            if !strings.contains(valcmd, cmd) {
+                conn.Write([]byte("newp!"))
+            }
 
             // open the fifo file
             fname := "/home/msw978/.config/pianobar/ctl"
