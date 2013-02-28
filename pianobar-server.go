@@ -34,7 +34,7 @@ func main() {
 
         go func() {
             var req string
-            var buf [5]byte
+            var buf [24]byte
 
             // read from the connection
             //for {
@@ -49,10 +49,15 @@ func main() {
 
             fmt.Printf("i was sent %v\n", req)
 
-            cmd := req[0]
+            cmd := string(req[0])
 
-            if !strings.contains(valcmd, cmd) {
+            if !strings.Contains(valcmd, cmd) {
                 conn.Write([]byte("newp!"))
+                return
+            }
+
+            if cmd == "s" {
+                req = req + "\n"
             }
 
             // open the fifo file

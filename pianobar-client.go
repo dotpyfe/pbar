@@ -8,7 +8,7 @@ import (
     "errors"
 )
 
-const server = ""
+const server = "cslewis:8181"
 
 var stations = map[int]string{
     1 : "Albert King",
@@ -47,6 +47,20 @@ func main() {
 
     cmd := os.Args[1]
 
+    if cmd == "-h" {
+        fmt.Printf("usage: pbarc command\n\n")
+        fmt.Printf("possible commands:\n")
+        fmt.Printf("\tstation, s\n")
+        fmt.Printf("\t\tSwitch stations\n")
+        fmt.Printf("\tnext, n\n")
+        fmt.Printf("\t\tNext song\n")
+        fmt.Printf("\tpause, p\n")
+        fmt.Printf("\t\tPause playback\n")
+        fmt.Printf("\tstop, q\n")
+        fmt.Printf("\t\tquit pianobar\n")
+        return
+    }
+
     var req string
     var err error
 
@@ -59,7 +73,7 @@ func main() {
         req = "q"
     case "switch", "s":
         req, err = switch_station()
-        fmt.Println("chose", req)
+        req = "s" + req
         if err != nil {
             return
         }
@@ -73,6 +87,8 @@ func main() {
 
     // TODO: sanity checking
     conn.Write([]byte(req))
+
+    fmt.Printf("sent %v\n", req)
 
     if err != nil { panic(err) }
 
