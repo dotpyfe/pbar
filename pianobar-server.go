@@ -4,13 +4,14 @@ import (
     "net"
     "fmt"
     "os"
+    "os/exec"
     "io"
     "strings"
 )
 
 const listenPort = ":8181"
 const ok = "OK"
-const valcmd = "npsq"
+const valcmd = "npsqg"
 
 func main() {
     // connect to the listening port
@@ -58,6 +59,15 @@ func main() {
 
             if cmd == "s" {
                 req = req + "\n"
+            }
+
+            if cmd == "g" {
+                // start up pianobar
+                cmd := exec.Command("pianobar")
+                err = cmd.Start()
+                if err != nil {
+                    panic(err)
+                }
             }
 
             // open the fifo file

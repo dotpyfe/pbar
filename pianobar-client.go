@@ -50,6 +50,8 @@ func main() {
     if cmd == "-h" {
         fmt.Printf("usage: pbarc command\n\n")
         fmt.Printf("possible commands:\n")
+        fmt.Printf("\tstart, g\n")
+        fmt.Printf("\t\tstart up pianobar if not running\n")
         fmt.Printf("\tstation, s\n")
         fmt.Printf("\t\tSwitch stations\n")
         fmt.Printf("\tnext, n\n")
@@ -77,6 +79,8 @@ func main() {
         if err != nil {
             return
         }
+    case "start", "g":
+        req = "g"
     default:
         fmt.Println("not a valid command asshole!")
         return
