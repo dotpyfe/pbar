@@ -38,28 +38,32 @@ func switch_station() (string, error) {
     return stations[i] + " Radio", nil
 }
 
+func print_usage() {
+    fmt.Printf("usage: pbarc command\n\n")
+    fmt.Printf("possible commands:\n")
+    fmt.Printf("\tstart, g\n")
+    fmt.Printf("\t\tstart up pianobar if not running\n")
+    fmt.Printf("\tstation, s\n")
+    fmt.Printf("\t\tSwitch stations\n")
+    fmt.Printf("\tnext, n\n")
+    fmt.Printf("\t\tNext song\n")
+    fmt.Printf("\tpause, p\n")
+    fmt.Printf("\t\tPause playback\n")
+    fmt.Printf("\tstop, q\n")
+    fmt.Printf("\t\tquit pianobar\n")
+}
+
 func main() {
     argc := len(os.Args)
     if argc != 2 {
-        fmt.Printf("usage: pbarc command\n")
+        print_usage()
         return
     }
 
     cmd := os.Args[1]
 
     if cmd == "-h" {
-        fmt.Printf("usage: pbarc command\n\n")
-        fmt.Printf("possible commands:\n")
-        fmt.Printf("\tstart, g\n")
-        fmt.Printf("\t\tstart up pianobar if not running\n")
-        fmt.Printf("\tstation, s\n")
-        fmt.Printf("\t\tSwitch stations\n")
-        fmt.Printf("\tnext, n\n")
-        fmt.Printf("\t\tNext song\n")
-        fmt.Printf("\tpause, p\n")
-        fmt.Printf("\t\tPause playback\n")
-        fmt.Printf("\tstop, q\n")
-        fmt.Printf("\t\tquit pianobar\n")
+        print_usage()
         return
     }
 
