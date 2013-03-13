@@ -48,12 +48,19 @@ func main() {
                 }
             //}
 
-            fmt.Printf("i was sent %v\n", req)
+            fmt.Printf("i was sent %v by %v\n", strings.Trim(req, "\n"), conn.RemoteAddr())
 
             cmd := string(req[0])
 
+            if len(string(req)) > 1 && cmd != "s" {
+                conn.Write([]byte("newp!"))
+                fmt.Printf("\tinvalid request!\n")
+                return
+            }
+
             if !strings.Contains(valcmd, cmd) {
                 conn.Write([]byte("newp!"))
+                fmt.Printf("\tinvalid request!\n")
                 return
             }
 
