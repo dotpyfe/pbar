@@ -30,7 +30,7 @@ func switch_station() (string, error) {
     var i int
     fmt.Scan(&i)
 
-    if (i > len(stations) - 1) || (i <= 0) {
+    if (i > len(stations)) || (i <= 0) {
         fmt.Printf("NEWP\n")
         return "", errors.New("NEWP")
     }
