@@ -10,19 +10,21 @@ import (
 
 const server = "cslewis:8181"
 
-var stations = map[int]string{
-    1 : "Albert King",
-    2 : "Bonobo",
-    3 : "Burial",
-    4 : "Eric Clapton",
-    5 : "Jimi Hendrix",
-    6 : "Phaeleh",
-    7 : "The Black Keys",
-    8 : "Washed Out"}
+var stations = []string{
+    "Albert King",
+    "Bonobo",
+    "Burial",
+    "Eric Clapton",
+    "Jimi Hendrix",
+    "Phaeleh",
+    "The Black Keys",
+    "Washed Out",
+    "Black Sabbath",
+    "Ty Segall"}
 
 func switch_station() (string, error) {
     fmt.Printf("=== CHOOSE STATION ======\n")
-    for i, r := range stations {
+    for i,r := range stations {
         fmt.Println(i, " : ", r)
     }
     fmt.Printf("=========================\n")
